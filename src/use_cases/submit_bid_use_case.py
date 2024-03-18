@@ -12,7 +12,6 @@ class SubmitBidUseCase:
         self._auction_repository = auction_repository
 
     async def __call__(self, bid: Bid) -> None:
-        print(bid)
         auction = await self._auction_repository.get(id=bid.auction_id)
         if not auction:
             raise AuctionNotFoundError(bid.auction_id)
