@@ -8,3 +8,26 @@ strict = true
 module = "tests.*"
 disallow_incomplete_defs = false
 disallow_untyped_defs = false
+
+[tool.poetry]
+name = "clean-arch-fastapi"
+version = "0.1.0"
+description = ""
+authors = ["Alan Jose <alanjose10@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.5"
+motor = "^3.6.0"
+uvicorn = "^0.32.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-asyncio = "^0.24.0"
+coverage = "^7.6.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
