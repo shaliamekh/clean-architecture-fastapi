@@ -2,7 +2,7 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from domain.enitites.bid import Bid
+from domain.entities.bid import Bid
 from domain.value_objects.price import CurrencyOption, Price
 
 

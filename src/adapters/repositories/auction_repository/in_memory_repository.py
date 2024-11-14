@@ -1,7 +1,7 @@
 from typing import Any
 
-from domain.enitites.auction import Auction
-from domain.enitites.bid import Bid
+from domain.entities.auction import Auction
+from domain.entities.bid import Bid
 from ports.repositories.auction_repository import AuctionRepository
 
 
