@@ -7,10 +7,10 @@ from adapters.repositories.auction_repository.in_memory_repository import (
     InMemoryAuctionRepository,
 )
 from ports.repositories.auction_repository import AuctionRepository
-from tests.utils import create_bid, create_auction
+from tests.utils import create_auction, create_bid
 from use_cases.exceptions import (
-    AuctionNotFoundError,
     AuctionNotActiveError,
+    AuctionNotFoundError,
     LowBidError,
 )
 from use_cases.submit_bid_use_case import SubmitBidUseCase

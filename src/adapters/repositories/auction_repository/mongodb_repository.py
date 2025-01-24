@@ -2,14 +2,15 @@ from datetime import date, datetime
 from typing import Any
 from uuid import UUID
 
+from bson import Binary
+from motor.motor_asyncio import AsyncIOMotorClient
+
 from adapters.exceptions import DatabaseError
 from domain.enitites.auction import Auction
 from domain.enitites.bid import Bid
 from domain.enitites.item import Item
 from domain.value_objects.price import Price
 from ports.repositories.auction_repository import AuctionRepository
-from motor.motor_asyncio import AsyncIOMotorClient
-from bson import Binary
 
 
 class MongoAuctionRepository(AuctionRepository):
@@ -22,7 +23,7 @@ class MongoAuctionRepository(AuctionRepository):
             document = await self.collection.find_one(filters)
             return self.__to_auction_entity(document) if document else None
         except Exception as e:
-            raise DatabaseError(e)
+            raise DatabaseError(e) from e
 
     async def add_bid(self, bid: Bid) -> bool:
         try:
@@ -32,14 +33,14 @@ class MongoAuctionRepository(AuctionRepository):
             )
             return bool(r.modified_count)
         except Exception as e:
-            raise DatabaseError(e)
+            raise DatabaseError(e) from e
 
     async def add(self, auction: Auction) -> None:
         try:
             auction_doc = self.__auction_to_doc(auction)
             await self.collection.insert_one(auction_doc)
         except Exception as e:
-            raise DatabaseError(e)
+            raise DatabaseError(e) from e
 
     @staticmethod
     def __get_filters(filters_args: dict[str, Any]) -> dict[str, Any]:
@@ -98,10 +99,7 @@ class MongoAuctionRepository(AuctionRepository):
     def __to_bid_entity(bid: dict[str, Any]) -> Bid:
         return Bid(
             bidder_id=UUID(bytes=bid["bidder_id"]),
-            price=Price(
-                value=bid["price"]["value"],
-                currency=bid["price"]["currency"],
-            ),
+            price=Price(value=bid["price"]["value"], currency=bid["price"]["currency"]),
             auction_id=UUID(bytes=bid["auction_id"]),
             id=UUID(bytes=bid["_id"]),
             created_at=datetime.fromisoformat(bid["created_at"]),

@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 
+from adapters.exceptions import ExternalError
 from use_cases.exceptions import (
     AuctionNotActiveError,
     AuctionNotFoundError,
     LowBidError,
 )
-from adapters.exceptions import ExternalError
 
 
 def exception_container(app: FastAPI) -> None:

@@ -3,25 +3,20 @@ from typing import Any
 
 import pytest
 from fastapi import status
-
-from domain.value_objects.price import Price, CurrencyOption
-from drivers.rest.dependencies import get_submit_bid_use_case
-from drivers.rest.main import app
-
 from httpx import AsyncClient
 
+from adapters.exceptions import ExternalError
+from domain.value_objects.price import CurrencyOption, Price
+from drivers.rest.dependencies import get_submit_bid_use_case
+from drivers.rest.main import app
 from use_cases.exceptions import (
-    AuctionNotFoundError,
     AuctionNotActiveError,
+    AuctionNotFoundError,
     LowBidError,
 )
-from adapters.exceptions import ExternalError
 
 auction_id = uuid.uuid4()
-payload = {
-    "bidder_id": str(uuid.uuid4()),
-    "price": {"value": 90, "currency": "EUR"},
-}
+payload = {"bidder_id": str(uuid.uuid4()), "price": {"value": 90, "currency": "EUR"}}
 url = f"/auctions/{str(auction_id)}/bids"
 
 

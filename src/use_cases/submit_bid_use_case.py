@@ -2,8 +2,8 @@ from domain.enitites.bid import Bid
 from ports.repositories.auction_repository import AuctionRepository
 from use_cases.exceptions import (
     AuctionNotActiveError,
-    LowBidError,
     AuctionNotFoundError,
+    LowBidError,
 )
 
 

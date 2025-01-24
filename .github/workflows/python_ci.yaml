@@ -16,12 +16,12 @@ jobs:
         working-directory: 'src/'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.12
+        python-version: 3.13
 
     - name: Install dependencies
       run: |
@@ -41,17 +41,17 @@ jobs:
         working-directory: 'src/'
     services:
       mongodb:
-        image: mongo:7.0.6
+        image: mongo:8.0.4
         ports:
           - 27017:27017
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.12
+        python-version: 3.13
 
     - name: Install dependencies
       run: |
