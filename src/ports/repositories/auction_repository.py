@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-from domain.enitites.auction import Auction
-from domain.enitites.bid import Bid
+from domain.entities.auction import Auction
+from domain.entities.bid import Bid
 
 
 class AuctionRepository(ABC):
