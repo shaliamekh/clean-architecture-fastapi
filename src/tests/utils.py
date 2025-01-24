@@ -1,9 +1,9 @@
 from datetime import date, timedelta
 from uuid import UUID, uuid4
 
-from domain.enitites.auction import Auction
-from domain.enitites.bid import Bid
-from domain.enitites.item import Item
+from domain.entities.auction import Auction
+from domain.entities.bid import Bid
+from domain.entities.item import Item
 from domain.value_objects.price import CurrencyOption, Price
 
 
