@@ -14,8 +14,8 @@ from ports.repositories.auction_repository import AuctionRepository
 
 
 class MongoAuctionRepository(AuctionRepository):
-    def __init__(self, client: AsyncIOMotorClient):  # type: ignore
-        self.collection = client.auctions.auction  # type: ignore
+    def __init__(self, client: AsyncIOMotorClient):
+        self.collection = client.auctions.auction
 
     async def get(self, **filters: Any) -> Auction | None:
         filters = self.__get_filters(filters)
